@@ -1,3 +1,4 @@
+import { VideosService, Video } from './../shared/videos.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public videosService: VideosService) { }
 
   ngOnInit(): void {
+    this.videosService.fetchVideo();
   }
 
 }

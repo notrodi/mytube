@@ -1,1 +1,4 @@
-<p>videos works!</p>
+<div *ngFor="let video of videosService.videos">
+    <video src="{{ video.src }}" controls preload="metadata"></video>
+    <mt-comments></mt-comments>
+</div>
