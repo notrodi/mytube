@@ -1,11 +1,14 @@
-<div infinite-scroll
+<div class="video-container"
+     infinite-scroll
      [infiniteScrollDistance]="1"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-    <div *ngFor="let video of videosService.videos">
+    <div *ngFor="let video of videosService.videos" class="video-card">
         <video src="{{ video.src }}" controls preload="metadata"></video>
-        <div>{{ video.title }}</div>
-        <mt-comments></mt-comments>
+        <div class="video-direction">
+            <span>{{ video.title }}</span>
+            <mt-comments></mt-comments>
+        </div>
     </div>
     <div *ngIf="!videosService.isMoreVideos">NO MORE VIDEOS</div>
 </div>

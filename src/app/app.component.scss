@@ -1,0 +1,15 @@
+@mixin _mobile {
+    @media (max-width: 769px){
+        @content;
+    }
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @include _mobile{
+        padding: 0;
+    }
+}

@@ -13,9 +13,8 @@ export interface Video {
 })
 export class VideosService {
   public videos: Video[] = [];
-  // public error: any;
   public indexVideo: number = 0;
-  public indexNextVideo: number = 2;
+  public indexNextVideo: number = 3;
   public isMoreVideos: boolean = true;
 
   constructor(private httpClient: HttpClient) { }
