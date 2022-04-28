@@ -1,4 +1,4 @@
-import { VideosService, Video } from './../shared/videos.service';
+import { VideosService } from './../shared/videos.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,7 +11,12 @@ export class VideosComponent implements OnInit {
   constructor(public videosService: VideosService) { }
 
   ngOnInit(): void {
-    this.videosService.fetchVideo();
+    this.videosService.fetchVideo(this.videosService.indexNextVideo);
   }
 
+  public onScroll() {
+    if (this.videosService.isMoreVideos) {
+      this.videosService.fetchVideo(this.videosService.indexNextVideo);
+    }
+  }
 }
