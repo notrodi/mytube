@@ -3,12 +3,21 @@
      [infiniteScrollDistance]="1"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()">
-    <div *ngFor="let video of videosService.videos" class="video-card">
+    <div *ngFor="let video of videos" class="video-card">
         <video src="{{ video.src }}" controls preload="metadata"></video>
         <div class="video-direction">
             <span>{{ video.title }}</span>
-            <mt-comments></mt-comments>
+            <div class="video-commnents">
+                <input type="text" [(ngModel)]="video.currentComment">
+                <button (click)="addComment(video.id)">ADD</button>
+                <div class="video-comments-container">
+                    <div *ngFor="let comm of video.comments" class="video-comment">
+                        <span>{{ comm }}</span>
+                        <span (click)="deleteComment()">X</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div *ngIf="!videosService.isMoreVideos">NO MORE VIDEOS</div>
+    <div *ngIf="!thereIsAnotherVideo">NO MORE VIDEOS</div>
 </div>
