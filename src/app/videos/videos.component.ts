@@ -1,6 +1,6 @@
 import { Video, VideosService } from './../shared/videos.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'mt-videos',
@@ -8,21 +8,25 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
-  constructor(public videosService: VideosService,
-              private httpClient: HttpClient) { }
+  constructor(public videosService: VideosService) { }
 
   public videos: Video[] = [];
-  public indexCurrentVideo: number = 0;
-  public indexNextVideo: number = 2;
+  public indexNextVideo: number = 3;
   public thereIsAnotherVideo: boolean = true;
 
   ngOnInit(): void {
-    this.displayVideo(this.indexCurrentVideo, this.indexNextVideo);
+    this.displayInitVideo();
   }
 
-  public displayVideo(startIndex: number, endIndex: number): void {
-    for(startIndex; startIndex <= endIndex; startIndex++) {
-      this.videosService.fetchVideo(startIndex).subscribe({
+  public async displayInitVideo() {
+    for (let index = 0; index < this.indexNextVideo; index++) {
+      this.videos.push(await firstValueFrom(this.videosService.fetchVideo(index)));
+    }
+  }
+
+  public displayVideo(index: number) {
+    this.videosService.fetchVideo(index)
+      .subscribe({
         next: (video: Video) => {
           this.videos.push(video);
         },
@@ -32,15 +36,12 @@ export class VideosComponent implements OnInit {
           }
         }
       })
-      this.indexCurrentVideo++;
-    }
-
     this.indexNextVideo++;
   }
 
   public onScroll() {
     if (this.thereIsAnotherVideo) {
-      this.displayVideo(this.indexCurrentVideo, this.indexNextVideo);
+      this.displayVideo(this.indexNextVideo);
     }
   }
 
