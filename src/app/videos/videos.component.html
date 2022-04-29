@@ -6,20 +6,18 @@
     <div *ngFor="let video of videos" class="video-card">
         <video src="{{ video.src }}" controls preload="metadata"></video>
         <div class="video-direction">
-            <span>{{ video.title }}</span>
-            <div class="video-commnents">
-                <input type="text" [(ngModel)]="video.currentComment">
-                <button (click)="addComment(video.id)">ADD</button>
+            <h2 class="video-title">{{ video.title }}</h2>
+            <div class="video-comments">
+                <input type="text" placeholder="Оставить комментарий..." [(ngModel)]="video.currentComment">
+                <button (click)="addComment(video.id)" class="add-comment-button">❯</button>
                 <div class="video-comments-container">
                     <div *ngFor="let comm of video.comments" class="video-comment">
-                        <span>{{ comm.comment }}</span>
-                        <span></span>
-                        <span>{{ comm.id }}</span>
-                        <span (click)="deleteComment(video.id, comm.id)">X</span>
+                        <p class="video-comment-text">{{ comm.comment }}</p>
+                        <span (click)="deleteComment(video.id, comm.id)" class="delete-comment-button">×</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="!thereIsAnotherVideo">NO MORE VIDEOS</div>
+    <div *ngIf="!thereIsAnotherVideo" class="end-block">На этом пока всё!</div>
 </div>

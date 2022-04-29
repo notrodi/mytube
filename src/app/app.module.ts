@@ -6,11 +6,13 @@ import { VideosComponent } from './videos/videos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideosComponent
+    VideosComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

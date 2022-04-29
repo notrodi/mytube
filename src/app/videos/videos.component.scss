@@ -4,25 +4,116 @@
     }
 }
 
-.video-container {
-    .video-card {
-        display: flex;
+.video-card {
+    display: flex;
+    margin: 0 0 15px 0;
+    padding: 15px 20px;
+
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 0 0 transparent;
+    background-color: #fff;
+    border-radius: 4px;
+
+    @include _mobile {
+        flex-direction: column;
+    }
+
+    video {
+        width: 50%;
+        margin: 0 20px 0 0;
+        border-radius: 4px;
 
         @include _mobile {
-            flex-direction: column;
-        }
-
-        video {
-            width: 50%;
-    
-            @include _mobile {
-                width: 100%;
-            }
-        }
-
-        .video-direction {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
         }
     }
+
+    .video-direction {
+        width: 50%;
+
+        @include _mobile {
+            width: 100%;
+        }
+
+        .video-title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .video-comments {
+            font-size: 16px;
+            color: #202020;
+
+            input {
+                outline: none;
+                border: none;
+                font-size: 16px;
+                color: #565656;
+                border-bottom: 1px solid #565656;
+            }
+
+            .add-comment-button {
+                width: 45px;
+                height: 25px;
+                margin: 20px 0 10px 15px;
+
+                border-radius: 20px;
+                box-shadow: none;
+                border: none;
+                background: #0047bb;
+                color: #fff;
+
+                &:hover {
+                    cursor: pointer;
+                    background: #003893;
+                }
+            }
+
+            .video-comments-container {
+                max-height: 160px;
+                overflow-y: scroll;
+
+                @include _mobile {
+                    max-height: 70px;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 14px;
+                    background-color: #ffffff;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-image: linear-gradient(90deg, #cecece, #cecece);
+                }
+                &::-webkit-scrollbar-track {
+                    box-shadow: 5px 5px 5px -5px rgb(34 60 80 / 20%) inset;
+                    background-color: #ffffff;
+                }
+
+                .video-comment {
+                    display: flex;
+                    margin: 0 0 8px 0;
+
+                    .video-comment-text {
+                        background: #e0ecfa;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                    }
+
+                    .delete-comment-button {
+                        cursor: pointer;
+                        padding: 5px;
+
+                        &:hover {
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.end-block {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 0 20px 0;
 }
