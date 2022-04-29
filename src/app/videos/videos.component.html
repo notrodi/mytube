@@ -13,7 +13,9 @@
                 <div class="video-comments-container">
                     <div *ngFor="let comm of video.comments" class="video-comment">
                         <span>{{ comm.comment }}</span>
-                        <span (click)="deleteComment()">X</span>
+                        <span></span>
+                        <span>{{ comm.id }}</span>
+                        <span (click)="deleteComment(video.id, comm.id)">X</span>
                     </div>
                 </div>
             </div>

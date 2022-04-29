@@ -56,7 +56,15 @@ export class VideosComponent implements OnInit {
     this.videosService.updateVideo(index, this.videos[index]).subscribe();
   }
 
-  public deleteComment() {
-    alert("work")
+  public deleteComment(indexVideo: number, indexComment: number) {
+    for (let comm of this.videos[indexVideo].comments) {
+      if (comm.id == indexComment) {
+        const indexComm = this.videos[indexVideo].comments.indexOf(comm);
+        this.videos[indexVideo].comments.splice(indexComm, 1)
+      }
+    }
+
+    console.log(this.videos[indexVideo]);
+    this.videosService.updateVideo(indexVideo, this.videos[indexVideo]).subscribe();
   }
 }
