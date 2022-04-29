@@ -8,7 +8,11 @@
     width: 100%;
     padding: 0 20px;
     background-color: #0f54b9;
-    color: #fff
+    color: #fff;
+
+    @include _mobile {
+        padding: 0 10px;
+    }
 }
 
 .container {

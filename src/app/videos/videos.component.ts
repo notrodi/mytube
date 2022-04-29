@@ -64,7 +64,6 @@ export class VideosComponent implements OnInit {
       }
     }
 
-    console.log(this.videos[indexVideo]);
     this.videosService.updateVideo(indexVideo, this.videos[indexVideo]).subscribe();
   }
 }
