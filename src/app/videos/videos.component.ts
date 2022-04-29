@@ -1,4 +1,4 @@
-import { Video, VideosService } from './../shared/videos.service';
+import { Video, VideosService, Comment } from './../shared/videos.service';
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
@@ -46,12 +46,25 @@ export class VideosComponent implements OnInit {
   }
 
   public addComment(index: number) {
-    this.videos[index].comments.unshift(this.videos[index].currentComment);
+    const newComment: Comment = {
+      id: this.videos[index].comments.length,
+      comment: this.videos[index].currentComment
+    }
+
+    this.videos[index].comments.unshift(newComment);
     this.videos[index].currentComment = '';
     this.videosService.updateVideo(index, this.videos[index]).subscribe();
   }
 
-  public deleteComment() {
-    alert("work")
+  public deleteComment(indexVideo: number, indexComment: number) {
+    for (let comm of this.videos[indexVideo].comments) {
+      if (comm.id == indexComment) {
+        const indexComm = this.videos[indexVideo].comments.indexOf(comm);
+        this.videos[indexVideo].comments.splice(indexComm, 1)
+      }
+    }
+
+    console.log(this.videos[indexVideo]);
+    this.videosService.updateVideo(indexVideo, this.videos[indexVideo]).subscribe();
   }
 }
