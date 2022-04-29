@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, firstValueFrom, Observer } from 'rxjs';
 
+export interface Comment {
+  id: number,
+  comment: string
+}
+
 export interface Video {
   then: any;
   id: number,
   title: string,
   src: string,
-  comments: string[],
+  comments: Comment[],
   currentComment: string
 }
 
