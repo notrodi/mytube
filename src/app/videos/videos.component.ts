@@ -45,7 +45,12 @@ export class VideosComponent implements OnInit {
     }
   }
 
-  public addComment(index: number) {
+  public addComment(index: number): void {
+    if (this.videos[index].currentComment.length === 0) {
+      alert('Комментарий не может быть пустым!');
+      return
+    }
+
     const newComment: Comment = {
       id: this.videos[index].comments.length,
       comment: this.videos[index].currentComment
